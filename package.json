@@ -1,0 +1,24 @@
+{
+  "name": "generate-report-web-quality",
+  "version": "1.0.0",
+  "private": true,
+  "author": {
+    "name": "Geir Gåsodden",
+    "email": "geir.gasodden@pythonia.no",
+    "url": "https://github.com/zrrrzzt"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/telemark/generate-report-web-quality.git"
+  },
+  "bugs": {
+    "url": "http://github.com/telemark/generate-report-web-quality/issues"
+  },
+  "dependencies": {
+    "report-site-pagespeed": "git+https://github.com/telemark/report-site-pagespeed",
+    "utils-sitemap-to-array": "git+https://github.com/telemark/utils-sitemap-to-array"
+  }
+}
