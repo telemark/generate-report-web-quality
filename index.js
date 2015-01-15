@@ -6,13 +6,25 @@ var reportPageSpeed = require('report-site-pagespeed');
 var sitemapUrl = 'http://www.telemark.no/sitemap.xml';
 var body = '';
 var options = {
-  apikey:'insert-your-apikey',
-  filename:'report.mobile.csv',
+  apikey:'insert-your-api-key',
   verbose:true
 };
 
 function getUrl(input){
   return input.loc;
+}
+
+function handleResponse(error, data){
+  if(error){
+    console.error(error);
+  } else {
+    console.log(data.message);
+    console.log('Errors: ' + data.errors.length);
+    data.errors.forEach(function(item){
+      console.log(item.url);
+      console.log(item.error.message);
+    });
+  }
 }
 
 http.get(sitemapUrl, function(res) {
@@ -27,13 +39,7 @@ http.get(sitemapUrl, function(res) {
         console.error(err);
       } else {
         options.urls = result.map(getUrl);
-        reportPageSpeed(options, function(error, data){
-          if(error){
-            console.error(error);
-          } else {
-            console.log(data);
-          }
-        });
+        reportPageSpeed(options, handleResponse);
       }
     });
   });
